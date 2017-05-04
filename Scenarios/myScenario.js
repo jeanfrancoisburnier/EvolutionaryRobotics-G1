@@ -27,6 +27,7 @@
 			{
 				if (sensors[i].read() > maxLight)
 					maxLight = sensors[i].read();
+					console.log("Max Light: "+maxLight);
 			}			
 
 		}
@@ -49,15 +50,16 @@
 		var zDiff = (currentPos.z - this.startPos.z);
 
 		this.distance = Math.sqrt(Math.pow(xDiff,2) + Math.pow(yDiff,2) + Math.pow(zDiff,2));
+		console.log("Distance: "+this.distance);
 			
 		// Something needs to be done with the Height here...
 
 		var sum = 0;
 		for (var i = 0; i < this.maxLightVals.length; i++)
 		{
-			sum += this.distance * ( 1 - this.maxLightVals[i] );
+			sum += this.height[i] * ( 1 - this.maxLightVals[i] );
 		}
-			
+		sum += this.distance;
 		this.fitnesses.push(sum);
 
 		return true;

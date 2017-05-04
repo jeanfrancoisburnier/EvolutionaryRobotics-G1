@@ -1,8 +1,8 @@
 # confBasic.txt -- basic configuration file
-scenario=MyScenario.js
+scenario=myScenario.js
 timeStep=0.005
 actuationFrequency=25
-simulationTime=20
+simulationTime=8
 terrainType=flat
 terrainLength=5
 terrainWidth=5
@@ -11,5 +11,6 @@ sensorNoiseLevel=0.0
 motorNoiseLevel=0.0
 capAcceleration=false
 startPositionConfigFile=startPos.txt
+lightSourcesConfigFile=singleLightSource.txt
 # uncomment the following to prevent 'jittery behaviors'
 #maxDirectionShiftsPerSecond=16
