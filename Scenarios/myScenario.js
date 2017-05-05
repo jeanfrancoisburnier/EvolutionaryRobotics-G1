@@ -57,7 +57,7 @@
 		var sum = 0;
 		for (var i = 0; i < this.maxLightVals.length; i++)
 		{
-			sum += this.height[i] * ( 1 - this.maxLightVals[i] );
+			sum += this.height[i] * this.maxLightVals[i];
 		}
 		sum += this.distance;
 		this.fitnesses.push(sum);
