@@ -6,18 +6,18 @@
 				2 LightSensor EyeR 0
 			2 FixedBrick HeadL 0
 				1 LightSensor EyeL 0
-	1 ActiveHinge HipB 0 
+	1 ActiveHinge HipB 0
 		0 FixedBrick UpperLegB 1
-			0 ActiveHinge KneeB 1 
+			0 ActiveHinge KneeB 1
 				0 FixedBrick LowerLegB 0
-	2 ActiveHinge HipL 0 
+	2 ActiveHinge HipL 0
 		0 FixedBrick UpperLegL 1
-			0 ActiveHinge KneeL 1 
+			0 ActiveHinge KneeL 1
 				0 FixedBrick LowerLegL 0
-	3 ActiveHinge HipR 0 
+	3 ActiveHinge HipR 0
 		0 FixedBrick UpperLegR 1
-			0 ActiveHinge KneeR 1 
-				0 FixedBrick LowerLegR 0 
+			0 ActiveHinge KneeR 1
+				0 FixedBrick LowerLegR 0
 
 
 

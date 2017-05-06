@@ -1,64 +1,50 @@
 {
     // here we define a variable for record keeping
-    velocities: [],
-    maxIrVals: [],
+    //velocities: [],
+    //deltaVelocities: [],
+    minIrVals: [],
     fitnesses: [],
 
     setupSimulation: function() {
-        this.velocities = [];
-        this.maxLightVals = [];
-        this.height = [];
-        this.distance = [];
-        this.startPos = this.getRobot().getCoreComponent().getRootPosition();
+        //this.velocities = [];
+        //this.deltaVelocities = [];
+        this.minIrVals = [];
         return true;
     },
 
     // optional function called after each step of simulation
     afterSimulationStep: function() {
         var sensors = this.getRobot().getSensors();
-        var maxLight = 0
-
+        var minIr = 50
 
         for (var i = 0; i < sensors.length; i++) {
-            if (/^Eye/.test(sensors[i].getLabel())) {
-                if (sensors[i].read() > maxLight)
-                    maxLight = sensors[i].read();
-                console.log("Max Light: " + maxLight);
+            if (sensors[i].getType() == 'IrSensor') {
+                if (sensors[i].read() < minIr && sensors[i].read() > 0)
+                    minIr = sensors[i].read();
             }
 
         }
-        this.maxLightVals.push(maxLight);
 
-        var currentPos = this.getRobot().getCoreComponent().getRootPosition();
-        var zDiff = (currentPos.z - this.startPos.z);
-        this.height.push(Math.abs(zDiff));
+
+        this.minIrVals.push(minIr);
 
         return true;
     },
 
     // optional function called at the end of the simulation
     endSimulation: function() {
-
-        var currentPos = this.getRobot().getCoreComponent().getRootPosition();
-        var xDiff = (currentPos.x - this.startPos.x);
-        var yDiff = (currentPos.y - this.startPos.y);
-        var zDiff = (currentPos.z - this.startPos.z);
-
-        this.distance = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2) + Math.pow(zDiff, 2));
-        console.log("Distance: " + this.distance);
-
-        // Something needs to be done with the Height here...
-
         var sum = 0;
-        for (var i = 0; i < this.maxLightVals.length; i++) {
-            sum += this.height[i] * this.maxLightVals[i];
+        for (var i = 0; i < this.minIrVals.length; i++) {
+            sum += this.minIrVals[i]
         }
-        sum += this.distance;
-        this.fitnesses.push(sum);
 
+        if (sum != 0) {
+            this.fitnesses.push(100 / sum);
+            return true;
+        }
+        this.fitnesses.push(0)
         return true;
     },
-
     // the one required method... return the fitness!
     getFitness: function() {
         var fitness = this.fitnesses[0];
