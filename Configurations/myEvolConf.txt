@@ -1,5 +1,5 @@
 simulatorConfFile=myConf.txt
-referenceRobotFile=starfishOscillators.txt
+referenceRobotFile=myRobot3.txt
 mu=25
 lambda=25
 selection=deterministic-tournament
