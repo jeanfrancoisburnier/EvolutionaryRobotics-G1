@@ -1,0 +1,29 @@
+0 CoreComponent Core 0
+	0 ParametricJoint Neck1 0 0.03 0 0
+		0 FixedBrick HeadC 0
+			0 IrSensor EyeC 0
+			1 FixedBrick HeadR 0
+				2 LightSensor EyeR 0
+			2 FixedBrick HeadL 0
+				1 LightSensor EyeL 0
+	1 ActiveHinge HipB 0 
+		0 FixedBrick UpperLegB 1
+			0 ActiveHinge KneeB 1 
+				0 FixedBrick LowerLegB 0
+	2 ActiveHinge HipL 0 
+		0 FixedBrick UpperLegL 1
+			0 ActiveHinge KneeL 1 
+				0 FixedBrick LowerLegL 0
+	3 ActiveHinge HipR 0 
+		0 FixedBrick UpperLegR 1
+			0 ActiveHinge KneeR 1 
+				0 FixedBrick LowerLegR 0 
+
+
+
+HipB 0 Oscillator 0.8 -0.8 1
+HipL 0 Oscillator 0.8 0.5 1
+HipR 0 Oscillator 0.8 0 1
+KneeB 0 Sigmoid 0
+KneeL 0 Oscillator 0.8 0.75 1
+KneeR 0 Oscillator 0.8 0.25 1

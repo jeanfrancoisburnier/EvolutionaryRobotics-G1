@@ -1,5 +1,5 @@
 # confBasic.txt -- basic configuration file
-scenario=myScenario.js
+scenario=myScenario_light.js
 timeStep=0.005
 actuationFrequency=25
 simulationTime=8
