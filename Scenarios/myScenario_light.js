@@ -1,7 +1,5 @@
 {
-    // here we define a variable for record keeping
-    velocities : [],    
-    maxIrVals : [],
+    // here we define a variable for record keeping 
     fitnesses : [],
 
     setupSimulation: function()
@@ -15,7 +13,7 @@
     },
 
     afterSimulationStep: function()
-    {	
+    {
     	var light = 0;
     	var sensors = this.getRobot().getSensors();
 
@@ -42,14 +40,14 @@
 
 		this.distance = Math.sqrt(Math.pow(xDiff,2) + Math.pow(yDiff,2));
 		console.log("Distance: "+this.distance);
-			
+
 		// Something needs to be done with the Height here...
 
 		for (var i = 0; i < this.lightVals.length; i++)
 		{
 			sum += this.lightVals[i];
 		}
-		
+
 		this.fitnesses.push(sum);
 
 		return true;
