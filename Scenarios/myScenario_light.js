@@ -6,10 +6,28 @@
 
     setupSimulation: function()
     {
+    	this.lightVals = [];
 		this.maxLightVals = [];
 		this.distance = [];
 		var lightSources = this.getEnvironment().getLightSources();
 		this.lightSourcePos = lightSources[0].getPosition();
+		return true;
+    },
+
+    afterSimulationStep: function()
+    {	
+    	var light = 0;
+    	var sensors = this.getRobot().getSensors();
+
+		for (var i = 0; i < sensors.length; i++)
+		{
+			if (/^EyeC/.test(sensors[i].getLabel()))
+			{
+				light += sensors[i].read();
+			}
+		}
+
+		this.lightVals.push(light);
 		return true;
     },
 
@@ -20,27 +38,18 @@
 		var currentPos = this.getRobot().getCoreComponent().getRootPosition();
 		var xDiff = (currentPos.x - this.lightSourcePos.x);
 		var yDiff = (currentPos.y - this.lightSourcePos.y);
+		var sum = 0;
 
 		this.distance = Math.sqrt(Math.pow(xDiff,2) + Math.pow(yDiff,2));
 		console.log("Distance: "+this.distance);
 			
 		// Something needs to be done with the Height here...
 
-		var sum = 0;
-		var sensors = this.getRobot().getSensors();
-		var maxLight = 0
-
-		for (var i = 0; i < sensors.length; i++)
+		for (var i = 0; i < this.lightVals.length; i++)
 		{
-			if (/^Eye/.test(sensors[i].getLabel()))
-			{
-				if (sensors[i].read() > maxLight)
-					maxLight = sensors[i].read();
-					console.log("Max Light: "+maxLight);
-			}
+			sum += this.lightVals[i];
 		}
-
-		sum = 1/this.distance*maxLight;			
+		
 		this.fitnesses.push(sum);
 
 		return true;

@@ -1,0 +1,6 @@
+0 CoreComponent Core 0
+	0 ParametricJoint EyeC 0 0.02 0 0
+	1 FixedBrick HeadL 0
+		1 ParametricJoint EyeL 0 0.02 0 0
+	2 FixedBrick HeadR 0
+		2 ParametricJoint EyeR 0 0.02 0 0
